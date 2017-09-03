@@ -1,13 +1,18 @@
 const express = require('express');
-const app = express()
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
+const PORT = 9001;
+server.listen(PORT, function () {
+  console.log('server listening on port ' + PORT);
+})
+
+const bodyParser = require('body-parser');
+
 
 app.use(express.static('static'))
-
-var bodyParser = require('body-parser');
-
 app.use(bodyParser.json());
-
-
 // app.use(bodyParser.urlencoded({ extended: true }));
 // 这个是用来解析 form 表单的
 
@@ -20,12 +25,6 @@ const registerRoutes = function(app, routes) {
         app[route.method](route.path, route.func)
     }
 }
-
-// var method = 'get'
-// app[method]('/', function(req, res) {
-//
-// })
-
 
 // 导入 route/index.js 的所有路由数据
 const routeIndex = require('./route/index')
@@ -53,9 +52,19 @@ const routeChat = require('./route/chat')
 registerRoutes(app, routeChat.routes)
 
 
-var server = app.listen(9001, function() {
-    var host = server.address().address;
-    var port = server.address().port;
 
-   console.log('Example app listening at http://%s:%s', host, port);
-})
+
+io.on('connection', function (socket) {
+  console.log('socket.io connection');
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+
+// var server = app.listen(9001, function() {
+//     var host = server.address().address;
+//     var port = server.address().port;
+//
+//    console.log('Example app listening at http://%s:%s', host, port);
+// })

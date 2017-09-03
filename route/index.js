@@ -94,10 +94,10 @@ var image = {
         "id": "59705143aac439648f625a28",
         "number": "234235234"
       },
-
+      tags: ['a', 'b', 'c'],
       "user": {
         "id": "597047c8aac439639a74cb6a",
-        "name": "\u5f6d\u7389\u6797"
+        "name": "xiaoqi"
       },
       width: 32914
     }
@@ -126,30 +126,12 @@ var jpegs = {
 }
 
 
-var patchs = {
-  path: "/api/image/:sid/patchs",
-  method: "get",
-  func: function(req, res) {
-
-    var ob = {}
-    ob.patchs = {
-      "adfad2453456": "aaa",
-      "adfadfa53456": "bb",
-      "adf467da3456": "bbb",
-      "ad2345ddrthe": "ccc",
-    }
-
-    res.send(ob)
-  }
-}
-
 
 
 var routes = [
   patient,
   image,
   jpegs,
-  patchs
 ]
 
 module.exports.routes = routes
