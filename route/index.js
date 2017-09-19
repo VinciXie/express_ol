@@ -4,8 +4,7 @@ const fs = require('fs')
 // import { readFileSync } from 'fs';
 
 function sendHtml(path, res) {
-  var file = 'static/slide_images/CMU-1_files/' + path
-
+  var file = 'slide_images/CMU-1_files/' + path;
   // var options = {
   //   encoding: 'UTF-8',
   // }
@@ -81,7 +80,7 @@ var image = {
   method: "get",
   func: function(req, res) {
     let sid = req.params.sid
-    // console.log('sid', sid);
+    console.log('sid', sid);
     // {filename, height, id, level, mpp, power, user_id, user_name, width}
     let o = {
       name: "123.tiff",
@@ -94,10 +93,10 @@ var image = {
         "id": "59705143aac439648f625a28",
         "number": "234235234"
       },
-
+      tags: [],
       "user": {
-        "id": "597047c8aac439639a74cb6a",
-        "name": "\u5f6d\u7389\u6797"
+        "id": "59802c62aac4390df39d9a4b",
+        "name": "xiaoqi"
       },
       width: 32914
     }
@@ -126,30 +125,11 @@ var jpegs = {
 }
 
 
-var patchs = {
-  path: "/api/image/:sid/patchs",
-  method: "get",
-  func: function(req, res) {
-
-    var ob = {}
-    ob.patchs = {
-      "adfad2453456": "aaa",
-      "adfadfa53456": "bb",
-      "adf467da3456": "bbb",
-      "ad2345ddrthe": "ccc",
-    }
-
-    res.send(ob)
-  }
-}
-
-
 
 var routes = [
   patient,
   image,
-  jpegs,
-  patchs
+  jpegs
 ]
 
 module.exports.routes = routes

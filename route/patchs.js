@@ -7,16 +7,17 @@ const filename = './db/patchs.json';
 
 
 
-var get = {
-  path: "/api/patchs",
+var getPatchGroups = {
   method: "get",
+  path: "/api/patchs",
   func: function(req, res) {
 
     let data = fs.readFileSync(filename, 'utf8')
     if (data == '') {
-        data = JSON.stringify({patchs:{}})
+      res.json({patchs:{}})
+    } else {
+      res.send(data)
     }
-    res.send(data)
   }
 }
 
@@ -53,7 +54,7 @@ var post = {
 
 
 var patchs = [
-    get,
+    getPatchGroups,
     post
 ]
 
