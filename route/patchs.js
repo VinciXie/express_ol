@@ -9,7 +9,7 @@ const filename = './db/patchs.json';
 
 var getPatchGroups = {
   method: "get",
-  path: "/api/patchs",
+  path: "/patchs",
   func: function(req, res) {
 
     let data = fs.readFileSync(filename, 'utf8')
@@ -23,7 +23,7 @@ var getPatchGroups = {
 
 
 var post = {
-  path: "/api/patch",
+  path: "/patch",
   method: "post",
   func: function(req, res) {
     // let sid = req.params.sid

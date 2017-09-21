@@ -1,3 +1,11 @@
+function auth(data) {
+  // console.log(data);
+}
+
+function patchs_get() {
+  console.log('patchs_get', this);
+  this.emit({patchs:{}})
+}
 
 
 function onConnection(socket) {
@@ -8,22 +16,17 @@ function onConnection(socket) {
     console.log('user disconnected');
   });
 
-  socket.on('chat message', function(msg){
-    console.log('message: ' + msg);
-    io.emit('chat message', msg);
+
+  socket.on('auth', auth);
+
+  socket.on('patchs_get', function () {
+    console.log('patchs_get');
+    socket.emit('patchs', 'aa');
   });
-
-  socket.on('ferret', function(name, fn) {
-    console.log('name', name);
-    console.log('fn', fn);
-
-    setTimeout(function () {
-
-      fn(' woot!!! ');
-
-    }, 1000);
-
-  });
+  //
+  // socket.on('patchs_get', patchs_get);
+  //
+  // socket.on('patchs_get', patchs_get);
 
 }
 

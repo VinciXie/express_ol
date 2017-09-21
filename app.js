@@ -10,12 +10,14 @@ app.use(bodyParser.json());
 // 这个是用来解析 form 表单的
 
 
+const baseurl = '/pi'
+
 
 const registerRoutes = function(app, routes) {
     for (var i = 0; i < routes.length; i++) {
         var route = routes[i]
         // 下面这段是重点
-        app[route.method](route.path, route.func)
+        app[route.method](baseurl + route.path, route.func)
     }
 }
 

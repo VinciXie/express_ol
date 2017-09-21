@@ -16,7 +16,7 @@ function sendHtml(path, res) {
 
 
 var patient = {
-  path: "/api/patient/:pid",
+  path: "/patient/:pid",
   method: "get",
   func: function(req, res) {
     let pid = req.params.pid
@@ -76,7 +76,7 @@ var patient = {
 }
 
 var image = {
-  path: "/api/image/:sid",
+  path: "/image/:sid",
   method: "get",
   func: function(req, res) {
     let sid = req.params.sid
@@ -106,7 +106,7 @@ var image = {
 
 
 var jpegs = {
-  path: "/api/image/:sid/:z/:x_y",
+  path: "/image/:sid/:z/:x_y",
   method: "get",
   func: function(req, res) {
     let sid = req.params.sid

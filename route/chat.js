@@ -4,7 +4,7 @@
 
 
 var get = {
-  path: "/api/mark/:mid/chat",
+  path: "/mark/:mid/chat",
   method: "get",
   func: function(req, res) {
     // {filename, height, id, level, mpp, power, user_id, user_name, width}
