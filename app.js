@@ -32,14 +32,14 @@ const registerRoutes = function(app, routes) {
 //   console.log('是 / 接受到了');
 //   res.send({})
 // })
-//
+
 // app.get('/:id', function (req, res) {
 //   console.log('req.path', req.path);
 //   console.log('req.params', req.params);
 //   console.log('是 /:id 接受到了');
 //   res.send({})
 // })
-//
+
 // app.get('/api/', function (req, res) {
 //   console.log('是 /api 接受到了');
 //   res.send('是 /api 接受到了')
