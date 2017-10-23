@@ -104,7 +104,6 @@ var image = {
   }
 }
 
-
 var jpegs = {
   path: "/image/:sid/:z/:x_y",
   method: "get",
@@ -125,11 +124,10 @@ var jpegs = {
 }
 
 
-
 var routes = [
   patient,
   image,
-  jpegs
+  jpegs,
 ]
 
 module.exports.routes = routes

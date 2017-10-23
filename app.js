@@ -3,9 +3,13 @@ const app = express()
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+const fs = require('fs')
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
+
+app.use(express.static('fe'));
+app.use(express.static('slide_images'));
 // app.use(bodyParser.urlencoded({ extended: true }));
 // 这个是用来解析 form 表单的
 
@@ -26,12 +30,13 @@ const registerRoutes = function(app, routes) {
 //
 // })
 
-// app.get('/', function (req, res) {
-//   console.log('req.path', req.path);
-//   console.log('req.params', req.params);
-//   console.log('是 / 接受到了');
-//   res.send({})
-// })
+app.get('/os', function (req, res) {
+  console.log('req.path', req.path);
+  // console.log('req.params', req.params);
+  let data = fs.readFileSync('fe/index.html', 'utf8');
+
+  res.send(data);
+})
 
 // app.get('/:id', function (req, res) {
 //   console.log('req.path', req.path);
