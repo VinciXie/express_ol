@@ -60,6 +60,8 @@ const region_get = {
     console.log('还要继续往下写呢');
     let data = fs.readFileSync(filename, 'utf8')
     let regions = data.regions
+    
+    res.send({})
   }
 }
 

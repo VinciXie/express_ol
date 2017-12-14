@@ -1,2 +1,4 @@
 node_modules
 static/slide_images
+yarn.lock
+/db

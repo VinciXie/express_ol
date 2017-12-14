@@ -2,6 +2,7 @@
 // route 文件
 const fs = require('fs')
 // import { readFileSync } from 'fs';
+var baseUrl = '/hgg'
 
 function sendHtml(path, res) {
   var file = 'static/slide_images/CMU-1_files/' + path
@@ -15,69 +16,8 @@ function sendHtml(path, res) {
   // res.send(new Buffer(data));
 }
 
-
-var patient = {
-  path: "/api/patient/:pid",
-  method: "get",
-  func: function(req, res) {
-    let pid = req.params.pid
-    // console.log('pid', pid);
-    // {filename, height, id, level, mpp, power, user_id, user_name, width}
-    var ob = {
-        "id": "59705143aac439648f625a28",
-        "images": [
-            {
-                "filename": "2017-06-10_12.54.03.ndpi",
-                "id": "59705177aac439648f625a29",
-                "patient": {
-                    "id": "59705143aac439648f625a28",
-                    "number": "234235234"
-                },
-                "user": {
-                    "id": "597047c8aac439639a74cb6a",
-                    "name": "\u5f6d\u7389\u6797"
-                },
-                tag: 'H&E'
-            },
-            {
-                "filename": "2017-06-10_12.54.05.ndpi",
-                "id": "59705177aac439648f625a79",
-                "patient": {
-                    "id": "59705143aac449648f625a28",
-                    "number": "234205234"
-                },
-                "user": {
-                    "id": "59704728aac439639a74cb6a",
-                    "name": "\u5f6d\u7389\u6797"
-                },
-                tag: 'Ki-67'
-
-            },
-        ],
-      "info": {
-        "acceptDate": "2017-07-27T16:00:00.000Z",
-        "age": 34,
-        "brief": "\u9b42\u7275\u68a6\u8426\u683d4",
-        "detail": "\u775b",
-        "diagnose": "diagnose2",
-        "gender": "male",
-        "hospital": "shanghai",
-        "id": "234235234",
-        "imageInfo": "\u4e00\u4e8c\u4e09",
-        "married": "1",
-        "name": "\u8303\u5fb7\u8428",
-        "part": "liver",
-        "sendDate": "2017-07-19T16:00:00.000Z"
-      },
-      "number": "234235234",
-      "tag": "gastric carcinoma"
-    }
-    res.send(ob)
-  }
-}
-
 var image = {
-  path: "/api/image/:sid",
+  path: baseUrl + "/image/:sid",
   method: "get",
   func: function(req, res) {
     let sid = req.params.sid
@@ -90,10 +30,6 @@ var image = {
       level: 17,
       mpp: 0.5,
       power: 20,
-      "patient": {
-        "id": "59705143aac439648f625a28",
-        "number": "234235234"
-      },
       tags: ['a', 'b', 'c'],
       "user": {
         "id": "597047c8aac439639a74cb6a",
@@ -101,13 +37,13 @@ var image = {
       },
       width: 32914
     }
-    res.send(o)
+    res.send({info: o})
   }
 }
 
 
 var jpegs = {
-  path: "/api/image/:sid/:z/:x_y",
+  path: baseUrl + "/image/:sid/:z/:x_y",
   method: "get",
   func: function(req, res) {
     let sid = req.params.sid
@@ -129,7 +65,6 @@ var jpegs = {
 
 
 var routes = [
-  patient,
   image,
   jpegs,
 ]
