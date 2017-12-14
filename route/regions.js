@@ -5,7 +5,7 @@ const filename = './db/regions.json';
 
 
 var get = {
-  path: "/api/image/:sid/regions",
+  path: "/image/:sid/regions",
   method: "get",
   func: function(req, res) {
     let sid = req.params.sid
@@ -23,7 +23,7 @@ var get = {
 
 
 var post = {
-  path: "/api/image/:sid/region",
+  path: "/image/:sid/region",
   method: "post",
   func: function(req, res) {
     // let sid = req.params.sid
@@ -54,7 +54,7 @@ var post = {
 
 
 var put = {
-  path: "/api/region/:rid",
+  path: "/region/:rid",
   method: "put",
   func: function(req, res) {
     let id = req.params.rid

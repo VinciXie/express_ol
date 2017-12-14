@@ -17,14 +17,36 @@ app.use(bodyParser.json());
 // 这个是用来解析 form 表单的
 
 
+const baseurl = '/hgg'
+
 
 const registerRoutes = function(app, routes) {
     for (var i = 0; i < routes.length; i++) {
         var route = routes[i]
         // 下面这段是重点
-        app[route.method](route.path, route.func)
+        app[route.method](baseurl + route.path, route.func)
     }
 }
+
+// var method = 'get'
+// app[method]('/', function(req, res) {
+//
+// })
+
+app.get('/os', function (req, res) {
+  console.log('req.path', req.path);
+  // console.log('req.params', req.params);
+  let data = fs.readFileSync('fe/index.html', 'utf8');
+
+  res.send(data);
+})
+
+// app.get('/:id', function (req, res) {
+//   console.log('req.path', req.path);
+//   console.log('req.params', req.params);
+//   console.log('是 /:id 接受到了');
+//   res.send({})
+// })
 
 // 导入 route/index.js 的所有路由数据
 const routeIndex = require('./route/index')
@@ -54,17 +76,15 @@ registerRoutes(app, routeIndex.routes)
 
 
 
-io.on('connection', function (socket) {
-  console.log('socket.io connection');
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
 
-// var server = app.listen(9001, function() {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//
-//    console.log('Example app listening at http://%s:%s', host, port);
-// })
+const onConnection = require('./route_socket');
+// console.log('onConnection', onConnection);
+io.on('connection', onConnection);
+
+
+const hostname = '127.0.0.1';
+const port = 9001;
+
+server.listen(port, hostname, function() {
+  console.log(`服务器运行在 http://${hostname}:${port}/`);
+})

@@ -6,7 +6,7 @@
 // console.log('blog', blog);
 
 var add = {
-  path: "/api/add",
+  path: "/add",
   method: "post",
   func: function(req, res) {
     var form = req.body

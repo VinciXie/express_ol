@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>openseadragon</title>
+  </head>
+  <body>
+    <div id="openseadragon1" style="width: 100%; height: 800px;"></div>
+    <script src="./openseadragon.js"></script>
+    <script type="text/javascript">
+        var viewer = OpenSeadragon({
+            id: "openseadragon1",
+            prefixUrl: "./images/",
+            tileSources: "CMU-1.dzi",
+            showNavigator:  true,
+        });
+    </script>
+  </body>
+</html>

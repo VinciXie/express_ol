@@ -2,11 +2,9 @@
 // route 文件
 const fs = require('fs')
 // import { readFileSync } from 'fs';
-var baseUrl = '/hgg'
 
 function sendHtml(path, res) {
-  var file = 'static/slide_images/CMU-1_files/' + path
-
+  var file = 'slide_images/CMU-1_files/' + path;
   // var options = {
   //   encoding: 'UTF-8',
   // }
@@ -17,11 +15,11 @@ function sendHtml(path, res) {
 }
 
 var image = {
-  path: baseUrl + "/image/:sid",
+  path: "/image/:sid",
   method: "get",
   func: function(req, res) {
     let sid = req.params.sid
-    // console.log('sid', sid);
+    console.log('sid', sid);
     // {filename, height, id, level, mpp, power, user_id, user_name, width}
     let o = {
       name: "123.tiff",
@@ -41,9 +39,8 @@ var image = {
   }
 }
 
-
 var jpegs = {
-  path: baseUrl + "/image/:sid/:z/:x_y",
+  path: "/image/:sid/:z/:x_y",
   method: "get",
   func: function(req, res) {
     let sid = req.params.sid
@@ -60,8 +57,6 @@ var jpegs = {
     // res.send('')
   }
 }
-
-
 
 
 var routes = [

@@ -7,22 +7,23 @@ const filename = './db/patchs.json';
 
 
 
-var group_get = {
-  path: "/api/patchs",
+var getPatchGroups = {
   method: "get",
+  path: "/patchs",
   func: function(req, res) {
 
     let data = fs.readFileSync(filename, 'utf8')
     if (data == '') {
-        data = JSON.stringify({patchs:{}})
+      res.json({patchs:{}})
+    } else {
+      res.send(data)
     }
-    res.send(data)
   }
 }
 
 
-var group_post = {
-  path: "/api/patch",
+var post = {
+  path: "/patch",
   method: "post",
   func: function(req, res) {
     // let sid = req.params.sid
@@ -60,7 +61,7 @@ const region_get = {
     console.log('还要继续往下写呢');
     let data = fs.readFileSync(filename, 'utf8')
     let regions = data.regions
-    
+
     res.send({})
   }
 }
@@ -69,9 +70,8 @@ const region_get = {
 
 
 var patchs = [
-    group_get,
-    group_post,
-    region_get,
+    getPatchGroups,
+    post
 ]
 
 module.exports.routes = patchs

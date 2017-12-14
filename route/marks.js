@@ -8,7 +8,7 @@ const filename = './db/marks.json';
 
 
 var get = {
-  path: "/api/image/:sid/marks",
+  path: "/image/:sid/marks",
   method: "get",
   func: function(req, res) {
     let sid = req.params.sid
@@ -24,7 +24,7 @@ var get = {
 
 
 var post = {
-  path: "/api/image/:sid/mark",
+  path: "/image/:sid/mark",
   method: "post",
   func: function(req, res) {
     // let sid = req.params.sid
