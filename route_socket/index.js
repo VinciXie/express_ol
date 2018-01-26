@@ -4,7 +4,7 @@ const marks_filename = './db/marks.json';
 
 
 function auth(data) {
-  // console.log(data);
+  // console.log('auth', data);
 }
 
 function patchs_get() {
@@ -14,6 +14,9 @@ function patchs_get() {
 
 
 function onConnection(socket) {
+
+  socket.emit('connect', 'aaaa')
+  socket.emit('event', 'aaaa')
 
   console.log('a user connected');
 
@@ -45,13 +48,13 @@ function onConnection(socket) {
 
 
   // mark 部分
-  socket.on('image_marks_get', function () {
-    // console.log('image_marks_get data', data);
+  socket.on('marks_get', function () {
+    console.log('marks_get data');
     let marks = fs.readFileSync(marks_filename, 'utf8')
     if (marks == '') {
       marks = {}
     }
-    this.emit('image_marks_get', { marks })
+    this.emit('marks_get', { marks })
   });
 
 }

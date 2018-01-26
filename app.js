@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 // 这个是用来解析 form 表单的
 
 
-const baseurl = '/hgg'
+const baseurl = '/hg'
 
 
 const registerRoutes = function(app, routes) {

@@ -10,12 +10,11 @@
   "author": "",
   "description": "",
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "mongodb": "^2.2.31",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "nanoid": "^1.0.1"
   },
   "devDependencies": {
-    "nanoid": "^0.2.0",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.4"
   }
 }

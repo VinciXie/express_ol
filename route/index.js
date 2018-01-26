@@ -23,19 +23,21 @@ var image = {
     // {filename, height, id, level, mpp, power, user_id, user_name, width}
     let o = {
       name: "123.tiff",
-      height: 46000,
+      info: {
+        level: 17,
+        mpp: 0.45,
+        power: 20,
+        width: 40960,
+        height: 40960,
+      },
       id: sid,
-      level: 17,
-      mpp: 0.5,
-      power: 20,
       tags: ['a', 'b', 'c'],
       "user": {
         "id": "597047c8aac439639a74cb6a",
         "name": "xiaoqi"
       },
-      width: 32914
     }
-    res.send({info: o})
+    res.json(o)
   }
 }
 
