@@ -45,14 +45,18 @@ var jpegs = {
   path: "/image/:sid/:z/:x_y",
   method: "get",
   func: function(req, res) {
-    let sid = req.params.sid
-    let z = req.params.z
-    let x_y = req.params.x_y
+    const sid = req.params.sid
+    const z = req.params.z
+    if ( isNaN( parseInt(z) ) ) {
+      return console.log('z', z);
+    }
+
+    const x_y = req.params.x_y
     // console.log('sid', sid);
     // console.log('z', z);
     // console.log('x_y', x_y);
     // {filename, height, id, level, mpp, power, user_id, user_name, width}
-    let path = z + '/' + x_y
+    const path = z + '/' + x_y
     // let path = req.params.path
     // console.log('path', path);
     sendHtml(path, res)

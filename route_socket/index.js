@@ -1,15 +1,23 @@
 const fs = require('fs');
 
 const marks_filename = './db/marks.json';
+const patches_filename = './db/patches.json';
 
+function readJSONFile(file) {
+  var data = fs.readFileSync(file, 'utf8')
+  data = JSON.parse(data)
+  if (data == '') {
+    data = {}
+  }
+  return data
+}
+
+
+const routePatches = require('./patch');
+// console.log('routePatches', routePatches);
 
 function auth(data) {
   // console.log('auth', data);
-}
-
-function patchs_get() {
-  console.log('patchs_get', this);
-  this.emit({patchs:{}})
 }
 
 
@@ -27,11 +35,15 @@ function onConnection(socket) {
 
   socket.on('auth', auth);
 
+
   // patch 部分
-  socket.on('patchs_get', function (data) {
-    console.log('patchs_get', data);
-    socket.emit('patchs', 'aa');
-  });
+  for (let route of routePatches.routes) {
+    let { eventName, callback } = route
+    socket.on(eventName, function (data) {
+      socket.emit(eventName, callback(data) );
+    })
+
+  }
 
   //  视野部分
   socket.on('image_regions_get', function () {
@@ -49,12 +61,8 @@ function onConnection(socket) {
 
   // mark 部分
   socket.on('marks_get', function () {
-    console.log('marks_get data');
-    let marks = fs.readFileSync(marks_filename, 'utf8')
-    if (marks == '') {
-      marks = {}
-    }
-    this.emit('marks_get', { marks })
+    // console.log('marks_get data');
+    this.emit('marks_get', { marks: readJSONFile(marks_filename) })
   });
 
 }
